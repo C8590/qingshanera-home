@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const entrances = [
   {
@@ -32,34 +32,71 @@ const productSlides = [
   {
     name: 'QingChat',
     title: '把想法聊清楚',
-    desc: '面向学习、写作与 AI 实验的轻量对话入口。',
+    desc: '学习、写作、规划和灵感整理，都可以从一次轻量对话开始。',
+    accent: 'from-cyan-100 via-white to-slate-50',
   },
   {
     name: '学习助手',
-    title: '资料、笔记、计划放一起',
-    desc: '让学习流程更集中，少一点切换，多一点推进。',
+    title: '把学习过程收拢',
+    desc: '资料、笔记、计划和复盘放在同一个入口，减少切换带来的消耗。',
+    accent: 'from-sky-100 via-white to-cyan-50',
   },
   {
     name: 'Qing API',
-    title: '统一的 AI 调用入口',
-    desc: '为模型能力、接口调用和后续工具实验预留基础层。',
+    title: '为 AI 调用留好基础层',
+    desc: '统一承载模型接口与工具调用，为后续个人项目和自动化实验提供底座。',
+    accent: 'from-teal-100 via-white to-slate-50',
   },
 ]
 
 function App() {
   const [activeSlide, setActiveSlide] = useState(0)
+  const [isTouching, setIsTouching] = useState(false)
+  const touchStartX = useRef(0)
+  const touchDeltaX = useRef(0)
   const slide = productSlides[activeSlide]
 
-  const goPrev = () => {
+  useEffect(() => {
+    if (isTouching) return undefined
+
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % productSlides.length)
+    }, 4200)
+
+    return () => window.clearInterval(timer)
+  }, [isTouching])
+
+  const showPreviousSlide = () => {
     setActiveSlide((current) =>
       current === 0 ? productSlides.length - 1 : current - 1,
     )
   }
 
-  const goNext = () => {
-    setActiveSlide((current) =>
-      current === productSlides.length - 1 ? 0 : current + 1,
-    )
+  const showNextSlide = () => {
+    setActiveSlide((current) => (current + 1) % productSlides.length)
+  }
+
+  const handleTouchStart = (event) => {
+    setIsTouching(true)
+    touchStartX.current = event.touches[0].clientX
+    touchDeltaX.current = 0
+  }
+
+  const handleTouchMove = (event) => {
+    touchDeltaX.current = event.touches[0].clientX - touchStartX.current
+  }
+
+  const handleTouchEnd = () => {
+    if (touchDeltaX.current > 44) {
+      showPreviousSlide()
+    }
+
+    if (touchDeltaX.current < -44) {
+      showNextSlide()
+    }
+
+    touchDeltaX.current = 0
+    setIsTouching(false)
   }
 
   return (
@@ -91,52 +128,44 @@ function App() {
 
       <main id="top" className="flex flex-1 justify-center px-5 py-6 sm:px-6 sm:py-9">
         <section className="relative w-full max-w-md">
-          <div className="absolute inset-x-5 top-14 h-64 rounded-[2rem] bg-cyan-100/70 blur-3xl" />
+          <div className="absolute inset-x-0 top-12 h-72 rounded-[2.5rem] bg-cyan-100/70 blur-3xl transition-colors duration-700" />
 
-          <div className="relative mb-5 overflow-hidden rounded-2xl border border-white/70 bg-white/65 p-5 shadow-sm shadow-slate-200/80 backdrop-blur-xl">
-            <div className="flex items-start justify-between gap-4">
-              <div className="min-w-0">
+          <section
+            aria-label="产品介绍轮播"
+            className={`relative mb-5 min-h-[252px] overflow-hidden rounded-[1.35rem] border border-white/70 bg-gradient-to-br ${slide.accent} p-6 shadow-sm shadow-slate-200/80 backdrop-blur-xl transition-colors duration-700 sm:min-h-[280px]`}
+            onTouchEnd={handleTouchEnd}
+            onTouchMove={handleTouchMove}
+            onTouchStart={handleTouchStart}
+          >
+            <div
+              className="slide-panel flex h-full min-h-[204px] flex-col justify-between"
+              key={slide.name}
+            >
+              <div>
                 <p className="text-xs font-medium text-cyan-700">{slide.name}</p>
-                <h1 className="mt-2 text-2xl font-semibold leading-snug tracking-normal text-slate-950">
+                <h1 className="mt-4 max-w-sm text-3xl font-semibold leading-tight tracking-normal text-slate-950 sm:text-4xl">
                   {slide.title}
                 </h1>
-                <p className="mt-3 text-sm leading-6 text-slate-500">{slide.desc}</p>
+                <p className="mt-4 max-w-sm text-base leading-7 text-slate-600">
+                  {slide.desc}
+                </p>
               </div>
 
-              <div className="flex shrink-0 gap-2">
-                <button
-                  aria-label="上一项产品介绍"
-                  className="grid size-8 place-items-center rounded-full border border-slate-200 bg-white/80 text-lg leading-none text-slate-600 transition hover:border-cyan-200 hover:text-cyan-700"
-                  onClick={goPrev}
-                  type="button"
-                >
-                  ‹
-                </button>
-                <button
-                  aria-label="下一项产品介绍"
-                  className="grid size-8 place-items-center rounded-full border border-slate-200 bg-white/80 text-lg leading-none text-slate-600 transition hover:border-cyan-200 hover:text-cyan-700"
-                  onClick={goNext}
-                  type="button"
-                >
-                  ›
-                </button>
+              <div className="mt-7 flex items-center justify-between">
+                <div className="flex gap-2" aria-hidden="true">
+                  {productSlides.map((item, index) => (
+                    <span
+                      className={`h-1.5 rounded-full transition-all duration-500 ${
+                        index === activeSlide ? 'w-9 bg-cyan-600' : 'w-3 bg-slate-300/80'
+                      }`}
+                      key={item.name}
+                    />
+                  ))}
+                </div>
+                <p className="text-xs text-slate-400">滑动切换</p>
               </div>
             </div>
-
-            <div className="mt-5 flex gap-2">
-              {productSlides.map((item, index) => (
-                <button
-                  aria-label={`查看${item.name}介绍`}
-                  className={`h-1.5 rounded-full transition-all ${
-                    index === activeSlide ? 'w-8 bg-cyan-600' : 'w-3 bg-slate-200'
-                  }`}
-                  key={item.name}
-                  onClick={() => setActiveSlide(index)}
-                  type="button"
-                />
-              ))}
-            </div>
-          </div>
+          </section>
 
           <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-xl shadow-slate-200/70">
             <div className="grid gap-3">
