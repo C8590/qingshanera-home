@@ -31,21 +31,18 @@ const entrances = [
 const productSlides = [
   {
     name: 'QingChat',
-    title: '把想法聊清楚',
-    desc: '学习、写作、规划和灵感整理，都可以从一次轻量对话开始。',
-    accent: 'from-cyan-100 via-white to-slate-50',
+    title: '让想法自然成形',
+    desc: '聊天、写作、学习与规划，都从一次清晰对话开始。',
   },
   {
     name: '学习助手',
-    title: '把学习过程收拢',
-    desc: '资料、笔记、计划和复盘放在同一个入口，减少切换带来的消耗。',
-    accent: 'from-sky-100 via-white to-cyan-50',
+    title: '把学习安排得更清楚',
+    desc: '资料、笔记、计划与复盘集中管理，让每一步都有章法。',
   },
   {
     name: 'Qing API',
-    title: '为 AI 调用留好基础层',
-    desc: '统一承载模型接口与工具调用，为后续个人项目和自动化实验提供底座。',
-    accent: 'from-teal-100 via-white to-slate-50',
+    title: '把 AI 能力接入你的应用',
+    desc: '稳定连接模型能力，统一管理调用体验，让开发更专注于产品本身。',
   },
 ]
 
@@ -100,7 +97,7 @@ function App() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900">
+    <div className="flex min-h-screen flex-col bg-[radial-gradient(circle_at_top,#ecfeff_0%,#f8fafc_42%,#f1f5f9_100%)] text-slate-900">
       <header className="sticky top-0 z-30 border-b border-white/60 bg-white/65 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-md items-center justify-between gap-3 px-5 py-1.5 sm:max-w-2xl sm:px-6">
           <a
@@ -119,9 +116,7 @@ function App() {
           </a>
 
           <div className="min-w-0 shrink text-right">
-            <p className="truncate text-xs text-slate-500">
-              www.qingshanera.com
-            </p>
+            <p className="truncate text-xs text-slate-500">www.qingshanera.com</p>
           </div>
         </nav>
       </header>
@@ -132,13 +127,13 @@ function App() {
 
           <section
             aria-label="产品介绍轮播"
-            className={`relative mb-5 min-h-[252px] overflow-hidden rounded-[1.35rem] border border-white/70 bg-gradient-to-br ${slide.accent} p-6 shadow-sm shadow-slate-200/80 backdrop-blur-xl transition-colors duration-700 sm:min-h-[280px]`}
+            className="relative mb-5 min-h-[268px] overflow-hidden rounded-[1.35rem] border border-white/70 bg-white/60 p-6 shadow-sm shadow-slate-200/80 backdrop-blur-xl transition-colors duration-700 sm:min-h-[292px]"
             onTouchEnd={handleTouchEnd}
             onTouchMove={handleTouchMove}
             onTouchStart={handleTouchStart}
           >
             <div
-              className="slide-panel flex h-full min-h-[204px] flex-col justify-between"
+              className="slide-panel flex h-full min-h-[220px] flex-col justify-between"
               key={slide.name}
             >
               <div>
@@ -167,11 +162,11 @@ function App() {
             </div>
           </section>
 
-          <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-xl shadow-slate-200/70">
+          <div className="relative overflow-hidden rounded-[1.35rem] border border-white/70 bg-white/35 p-4 shadow-sm shadow-slate-200/80 backdrop-blur-xl">
             <div className="grid gap-3">
               {entrances.map((item) => (
                 <a
-                  className="flex min-w-0 items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3.5 transition hover:border-cyan-200 hover:text-cyan-700"
+                  className="flex min-w-0 items-center justify-between gap-3 rounded-xl border border-white/80 bg-white/65 px-4 py-3.5 shadow-sm shadow-slate-200/45 backdrop-blur-xl transition hover:border-cyan-200 hover:bg-white/80 hover:text-cyan-700"
                   href={item.href}
                   key={item.name}
                   rel="noreferrer"
@@ -180,7 +175,7 @@ function App() {
                   <span className="truncate text-base font-medium text-slate-700">
                     {item.name}
                   </span>
-                  <span className="shrink-0 text-sm font-medium text-cyan-700">
+                  <span className="shrink-0 rounded-full bg-white/70 px-3 py-1 text-sm font-medium text-cyan-700 ring-1 ring-cyan-100/80 backdrop-blur">
                     {item.tag}
                   </span>
                 </a>
