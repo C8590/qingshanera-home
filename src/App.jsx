@@ -48,9 +48,6 @@ function App() {
 
           <div className="min-w-0 shrink text-right">
             <p className="truncate text-sm text-slate-500">www.qingshanera.com</p>
-            <p className="mt-1 inline-flex rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700">
-              Online
-            </p>
           </div>
         </nav>
       </header>
