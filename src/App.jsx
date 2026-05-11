@@ -101,25 +101,25 @@ function App() {
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900">
-      <header className="sticky top-0 z-30 border-b border-white/60 bg-white/70 backdrop-blur-xl">
-        <nav className="mx-auto flex max-w-md items-center justify-between gap-4 px-5 py-2.5 sm:max-w-2xl sm:px-6">
+      <header className="sticky top-0 z-30 border-b border-white/60 bg-white/65 backdrop-blur-xl">
+        <nav className="mx-auto flex max-w-md items-center justify-between gap-3 px-5 py-1.5 sm:max-w-2xl sm:px-6">
           <a
             href="#top"
-            className="flex min-w-0 items-center gap-2.5"
+            className="flex min-w-0 items-center gap-2"
             aria-label="青山时代首页"
           >
             <img
-              className="size-9 shrink-0 rounded-lg"
+              className="size-8 shrink-0 rounded-lg"
               src="/qingshan-era-logo.svg"
               alt="青山时代 Logo"
             />
-            <span className="truncate text-base font-semibold tracking-normal text-slate-950">
+            <span className="truncate text-sm font-semibold tracking-normal text-slate-950">
               青山时代
             </span>
           </a>
 
           <div className="min-w-0 shrink text-right">
-            <p className="truncate text-xs text-slate-500 sm:text-sm">
+            <p className="truncate text-xs text-slate-500">
               www.qingshanera.com
             </p>
           </div>
@@ -190,7 +190,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="border-t border-white/60 bg-white/70 px-5 py-2.5 text-center text-xs leading-5 text-slate-500 backdrop-blur-xl">
+      <footer className="border-t border-white/60 bg-white/65 px-5 py-1.5 text-center text-[11px] leading-4 text-slate-500 backdrop-blur-xl">
         <div className="mx-auto max-w-md sm:max-w-2xl">
           <p>青山云计算提供服务</p>
           <p>© Qingshan Era Holding Group</p>
