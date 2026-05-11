@@ -14,6 +14,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #f8fafc;
+    background: #020617;
+    color-scheme: dark;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -26,6 +34,7 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @layer components {

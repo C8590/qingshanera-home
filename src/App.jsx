@@ -97,8 +97,8 @@ function App() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[radial-gradient(circle_at_top,#ecfeff_0%,#f8fafc_42%,#f1f5f9_100%)] text-slate-900">
-      <header className="sticky top-0 z-30 border-b border-white/60 bg-white/65 backdrop-blur-xl">
+    <div className="flex min-h-screen flex-col bg-[radial-gradient(circle_at_top,#ecfeff_0%,#f8fafc_42%,#eef2f7_100%)] text-slate-900 transition-colors duration-500 dark:bg-[radial-gradient(circle_at_top,#0e7490_0%,#0f172a_34%,#020617_100%)] dark:text-slate-100">
+      <header className="sticky top-0 z-30 bg-white/25 backdrop-blur-2xl dark:bg-slate-950/15">
         <nav className="mx-auto flex max-w-md items-center justify-between gap-3 px-5 py-1.5 sm:max-w-2xl sm:px-6">
           <a
             href="#top"
@@ -110,24 +110,26 @@ function App() {
               src="/qingshan-era-logo.svg"
               alt="青山时代 Logo"
             />
-            <span className="truncate text-sm font-semibold tracking-normal text-slate-950">
+            <span className="truncate text-sm font-semibold tracking-normal text-slate-950 dark:text-white">
               青山时代
             </span>
           </a>
 
           <div className="min-w-0 shrink text-right">
-            <p className="truncate text-xs text-slate-500">www.qingshanera.com</p>
+            <p className="truncate text-xs text-slate-500 dark:text-slate-400">
+              www.qingshanera.com
+            </p>
           </div>
         </nav>
       </header>
 
       <main id="top" className="flex flex-1 justify-center px-5 py-6 sm:px-6 sm:py-9">
         <section className="relative w-full max-w-md">
-          <div className="absolute inset-x-0 top-12 h-72 rounded-[2.5rem] bg-cyan-100/70 blur-3xl transition-colors duration-700" />
+          <div className="absolute inset-x-0 top-12 h-72 rounded-[2.5rem] bg-cyan-100/70 blur-3xl transition-colors duration-700 dark:bg-cyan-400/10" />
 
           <section
             aria-label="产品介绍轮播"
-            className="relative mb-5 min-h-[268px] overflow-hidden rounded-[1.35rem] border border-white/70 bg-white/60 p-6 shadow-sm shadow-slate-200/80 backdrop-blur-xl transition-colors duration-700 sm:min-h-[292px]"
+            className="relative mb-5 min-h-[268px] overflow-hidden rounded-[1.35rem] border border-white/65 bg-white/58 p-6 shadow-[0_20px_70px_rgba(15,23,42,0.08)] backdrop-blur-2xl transition-colors duration-700 sm:min-h-[292px] dark:border-white/10 dark:bg-white/[0.075] dark:shadow-[0_24px_80px_rgba(0,0,0,0.26)]"
             onTouchEnd={handleTouchEnd}
             onTouchMove={handleTouchMove}
             onTouchStart={handleTouchStart}
@@ -137,45 +139,46 @@ function App() {
               key={slide.name}
             >
               <div>
-                <p className="text-xs font-medium text-cyan-700">{slide.name}</p>
-                <h1 className="mt-4 max-w-sm text-3xl font-semibold leading-tight tracking-normal text-slate-950 sm:text-4xl">
+                <p className="text-xs font-medium text-cyan-700 dark:text-cyan-200">
+                  {slide.name}
+                </p>
+                <h1 className="mt-4 max-w-sm text-3xl font-semibold leading-tight tracking-normal text-slate-950 sm:text-4xl dark:text-white">
                   {slide.title}
                 </h1>
-                <p className="mt-4 max-w-sm text-base leading-7 text-slate-600">
+                <p className="mt-4 max-w-sm text-base leading-7 text-slate-600 dark:text-slate-300">
                   {slide.desc}
                 </p>
               </div>
 
-              <div className="mt-7 flex items-center justify-between">
-                <div className="flex gap-2" aria-hidden="true">
-                  {productSlides.map((item, index) => (
-                    <span
-                      className={`h-1.5 rounded-full transition-all duration-500 ${
-                        index === activeSlide ? 'w-9 bg-cyan-600' : 'w-3 bg-slate-300/80'
-                      }`}
-                      key={item.name}
-                    />
-                  ))}
-                </div>
-                <p className="text-xs text-slate-400">滑动切换</p>
+              <div className="mt-7 flex gap-2" aria-hidden="true">
+                {productSlides.map((item, index) => (
+                  <span
+                    className={`h-1.5 rounded-full transition-all duration-500 ${
+                      index === activeSlide
+                        ? 'w-9 bg-cyan-600 dark:bg-cyan-300'
+                        : 'w-3 bg-slate-300/70 dark:bg-white/18'
+                    }`}
+                    key={item.name}
+                  />
+                ))}
               </div>
             </div>
           </section>
 
-          <div className="relative overflow-hidden rounded-[1.35rem] border border-white/70 bg-white/35 p-4 shadow-sm shadow-slate-200/80 backdrop-blur-xl">
+          <div className="relative overflow-hidden rounded-[1.35rem] border border-white/60 bg-white/30 p-4 shadow-[0_18px_60px_rgba(15,23,42,0.07)] backdrop-blur-2xl dark:border-white/10 dark:bg-white/[0.055] dark:shadow-[0_24px_70px_rgba(0,0,0,0.2)]">
             <div className="grid gap-3">
               {entrances.map((item) => (
                 <a
-                  className="flex min-w-0 items-center justify-between gap-3 rounded-xl border border-white/80 bg-white/65 px-4 py-3.5 shadow-sm shadow-slate-200/45 backdrop-blur-xl transition hover:border-cyan-200 hover:bg-white/80 hover:text-cyan-700"
+                  className="glass-link flex min-w-0 items-center justify-between gap-3 rounded-xl border border-white/75 bg-white/64 px-4 py-3.5 shadow-[0_8px_26px_rgba(15,23,42,0.045)] backdrop-blur-2xl transition-[background-color,box-shadow,transform,opacity] duration-300 ease-out hover:bg-white/78 active:scale-[0.992] active:bg-white/82 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300/45 dark:border-white/10 dark:bg-white/[0.08] dark:shadow-[0_10px_30px_rgba(0,0,0,0.18)] dark:hover:bg-white/[0.115] dark:active:bg-white/[0.14] dark:focus-visible:ring-white/18"
                   href={item.href}
                   key={item.name}
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span className="truncate text-base font-medium text-slate-700">
+                  <span className="truncate text-base font-medium text-slate-700 dark:text-slate-100">
                     {item.name}
                   </span>
-                  <span className="shrink-0 rounded-full bg-white/70 px-3 py-1 text-sm font-medium text-cyan-700 ring-1 ring-cyan-100/80 backdrop-blur">
+                  <span className="shrink-0 rounded-full bg-white/58 px-3 py-1 text-sm font-medium text-cyan-700 ring-1 ring-white/70 backdrop-blur-xl dark:bg-white/[0.075] dark:text-cyan-200 dark:ring-white/10">
                     {item.tag}
                   </span>
                 </a>
@@ -185,7 +188,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="border-t border-white/60 bg-white/65 px-5 py-1.5 text-center text-[11px] leading-4 text-slate-500 backdrop-blur-xl">
+      <footer className="bg-white/25 px-5 py-1.5 text-center text-[11px] leading-4 text-slate-500 backdrop-blur-2xl dark:bg-slate-950/15 dark:text-slate-400">
         <div className="mx-auto max-w-md sm:max-w-2xl">
           <p>青山云计算提供服务</p>
           <p>© Qingshan Era Holding Group</p>
