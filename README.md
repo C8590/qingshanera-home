@@ -1,6 +1,12 @@
 # qingshanera-home
 
-青山时代 QingShan Era 的静态统一入口首页，用于展示学习、AI 工具与个人项目入口。项目不包含后端、数据库或登录系统，适合部署到 Cloudflare Pages。
+青山时代静态统一入口首页，用于展示学习、AI 工具与个人项目入口。项目不包含后端、数据库或登录系统，适合部署到 Cloudflare Pages。
+
+正式域名：
+
+```text
+https://www.qingshanera.com
+```
 
 ## 技术栈
 
@@ -20,6 +26,7 @@ npm run dev
 
 ```bash
 npm run build
+npm run lint
 ```
 
 构建产物会输出到 `dist` 目录。
@@ -70,8 +77,7 @@ www.qingshanera.com
 
 - QingChat: <https://chat.qingshanera.com>
 - 学习助手: <https://study.qingshanera.com>
-- API 聚合层: <https://api.qingshanera.com>
-- Hermes: <https://hermes.qingshanera.com>
-- 项目实验室: <https://www.qingshanera.com/lab>
+- API 聚合层: <https://llm.qingshanera.com>
 - 文档中心: <https://docs.qingshanera.com>
 - 状态页: <https://status.qingshanera.com>
+- 项目实验室: <https://www.qingshanera.com/lab>
